@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ name }}</h1>
     <button @click="log">记录日志</button>
     <button @click="report">上报日志</button>
   </div>
@@ -17,15 +17,15 @@ export default {
   methods: {
     log() {
       logan.log("Your log content", 1)
+      throw new Error('this is a error')
     },
     async report() {
-      const today = new Date()
-      console.log(this.timeFormat2Day(today))
+      const today = this.timeFormat2Day(new Date())
       const reportResult = await logan.report({
         reportUrl: 'http://127.0.0.1:18081/web/log/report',
         deviceId: 'LocalDeviceIdOrUnionId',
-        fromDayString: '2022-07-22',
-        toDayString: '2022-07-22',
+        fromDayString: today,
+        toDayString: today,
       })
       console.log(reportResult)
     },
@@ -35,6 +35,11 @@ export default {
       let M = date.getMonth() + 1;
       let D = date.getDate();
       return Y + '-' + (M < 10 ? '0' + M : M) + '-' + (D < 10 ? '0' + D : D);
+    }
+  },
+  computed: {
+    name() {
+      return '';
     }
   }
 }
