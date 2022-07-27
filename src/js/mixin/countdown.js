@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-export const countdownMixin = {
+export const countdown = {
     data() {
         return {
             timeInfo: {},

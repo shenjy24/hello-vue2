@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import {countdownMixin} from "@/js/countdownMixin";
+import {countdown} from "@/js/mixin/countdown";
 
 export default {
   name: "CountDown",
-  mixins: [countdownMixin],
+  mixins: [countdown],
   mounted() {
     this.restart("countdown")
   },
