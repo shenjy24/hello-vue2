@@ -4,7 +4,9 @@ import HelloWorld from "@/components/HelloWorld";
 import IndexedDB from "@/components/IndexedDB";
 import CountDown from "@/components/CountDown";
 import DragAndDrop from "@/components/DragAndDrop";
-import ScssStyle from "@/components/ScssStyle";
+import ScssStyle from "@/components/css/ScssStyle";
+import Transition from "@/components/css/Transition";
+import Animation from "@/components/css/Animation";
 
 Vue.use(Router);
 
@@ -35,6 +37,16 @@ export default new Router({
             path: '/scss',
             name: 'scss',
             component: ScssStyle
+        },
+        {
+            path: '/transition',
+            name: 'transition',
+            component: Transition
+        },
+        {
+            path: '/animation',
+            name: 'animation',
+            component: Animation
         }
     ]
 })
