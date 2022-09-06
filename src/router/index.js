@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import HelloWorld from "@/components/HelloWorld";
 import IndexedDB from "@/components/IndexedDB";
 import CountDown from "@/components/CountDown";
+import DragAndDrop from "@/components/DragAndDrop";
+import ScssStyle from "@/components/ScssStyle";
 
 Vue.use(Router);
 
@@ -23,6 +25,16 @@ export default new Router({
             path: '/countdown',
             name: 'countdown',
             component: CountDown
+        },
+        {
+            path: '/drag',
+            name: 'drag',
+            component: DragAndDrop
+        },
+        {
+            path: '/scss',
+            name: 'scss',
+            component: ScssStyle
         }
     ]
 })
