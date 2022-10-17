@@ -7,6 +7,7 @@ import DragAndDrop from "@/components/DragAndDrop";
 import ScssStyle from "@/components/css/ScssStyle";
 import Transition from "@/components/css/Transition";
 import Animation from "@/components/css/Animation";
+import Video from "@/components/media/Video";
 
 Vue.use(Router);
 
@@ -47,6 +48,11 @@ export default new Router({
             path: '/animation',
             name: 'animation',
             component: Animation
+        },
+        {
+            path: '/video',
+            name: 'video',
+            component: Video
         }
     ]
 })

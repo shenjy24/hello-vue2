@@ -13,7 +13,8 @@
     "element-ui": "^2.15.9",
     "logan-web": "^1.1.0",
     "vue": "^2.6.14",
-    "vue-router": "^3.5.3"
+    "vue-router": "^3.5.3",
+    "flv.js": "^1.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
