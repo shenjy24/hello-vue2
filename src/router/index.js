@@ -8,6 +8,7 @@ import ScssStyle from "@/components/css/ScssStyle";
 import Transition from "@/components/css/Transition";
 import Animation from "@/components/css/Animation";
 import Video from "@/components/media/Video";
+import Audio from "@/components/media/Audio";
 
 Vue.use(Router);
 
@@ -53,6 +54,11 @@ export default new Router({
             path: '/video',
             name: 'video',
             component: Video
+        },
+        {
+            path: '/audio',
+            name: 'audio',
+            component: Audio
         }
     ]
 })
