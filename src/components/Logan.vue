@@ -10,7 +10,7 @@
 import logan from 'logan-web'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Logger',
   props: {
     msg: String
   },

@@ -1,6 +1,5 @@
-import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from "@/components/HelloWorld";
+import Logan from "@/components/Logan";
 import IndexedDB from "@/components/IndexedDB";
 import CountDown from "@/components/CountDown";
 import DragAndDrop from "@/components/DragAndDrop";
@@ -9,16 +8,15 @@ import Transition from "@/components/css/Transition";
 import Animation from "@/components/css/Animation";
 import Video from "@/components/media/Video";
 import Audio from "@/components/media/Audio";
-
-Vue.use(Router);
+import VuexCounter from "@/components/VuexCounter";
 
 export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/',
-            name: 'hello',
-            component: HelloWorld
+            path: '/logan',
+            name: 'logan',
+            component: Logan
         },
         {
             path: '/indexed',
@@ -59,6 +57,11 @@ export default new Router({
             path: '/audio',
             name: 'audio',
             component: Audio
+        },
+        {
+            path: '/vuex',
+            name: 'VuexCounter',
+            component: VuexCounter
         }
     ]
 })
