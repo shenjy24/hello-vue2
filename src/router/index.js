@@ -9,6 +9,7 @@ import Animation from "@/components/css/Animation";
 import Video from "@/components/media/Video";
 import Audio from "@/components/media/Audio";
 import VuexCounter from "@/components/VuexCounter";
+import WebSite from "@/components/slot/WebSite";
 
 export default new Router({
     mode: 'history',
@@ -62,6 +63,11 @@ export default new Router({
             path: '/vuex',
             name: 'VuexCounter',
             component: VuexCounter
+        },
+        {
+            path: '/slot',
+            name: 'WebSite',
+            component: WebSite
         }
     ]
 })
