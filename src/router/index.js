@@ -10,6 +10,8 @@ import Video from "@/components/media/Video";
 import Audio from "@/components/media/Audio";
 import VuexCounter from "@/components/VuexCounter";
 import WebSite from "@/components/slot/WebSite";
+// import HelloThreeJS from "@/components/threejs/HelloThreeJS";
+import CreateScene from "@/components/threejs/CreateScene";
 
 export default new Router({
     mode: 'history',
@@ -68,6 +70,11 @@ export default new Router({
             path: '/slot',
             name: 'WebSite',
             component: WebSite
+        },
+        {
+            path: '/three',
+            name: 'HelloThreeJS',
+            component: CreateScene
         }
     ]
 })
