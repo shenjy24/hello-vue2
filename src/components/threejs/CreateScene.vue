@@ -10,6 +10,10 @@ import * as THREE from 'three'
 import Stats from 'stats-js'
 import * as Dat from 'dat-gui'
 import TrackballControls from 'three-trackballcontrols'
+import {ConvexGeometry} from 'three/examples/jsm/geometries/ConvexGeometry'
+import {ParametricGeometry} from 'three/examples/jsm/geometries/ParametricGeometry'
+import {ParametricGeometries} from "three/examples/jsm/geometries/ParametricGeometries"
+import {createMultiMaterialObject} from "three/examples/jsm/utils/SceneUtils.js"
 
 export default {
   name: "CreateScene",
@@ -25,20 +29,27 @@ export default {
       step: 0,
       trackballControls: null,
       clock: null,
+      planeGeometry: null,
       controls: {
         rotationSpeed: 0.02,
         bouncingSpeed: 0.03,
+        numberOfObjects: 0
       }
     }
   },
   mounted() {
-    this.firstScene()
+    this.createScene()
+    this.controls.numberOfObjects = this.scene.children
     window.addEventListener('resize', this.onResize, false)
   },
   methods: {
-    firstScene() {
+    createScene() {
       // create a scene, that will hold all our elements such as objects, cameras and lights.
       this.scene = new THREE.Scene();
+
+      // 雾化效果
+      // this.scene.fog = new THREE.Fog(0xffffff, 0.015, 100)
+      this.scene.fog = new THREE.FogExp2(0xffffff, 0.01)
 
       // create a camera, which defines where we're looking at.
       this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -54,9 +65,9 @@ export default {
       this.scene.add(axes);
 
       // create the ground plane
-      let planeGeometry = new THREE.PlaneGeometry(60, 30);
+      this.planeGeometry = new THREE.PlaneGeometry(60, 30);
       let planeMaterial = new THREE.MeshLambertMaterial({color: 0xcccccc});
-      this.plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      this.plane = new THREE.Mesh(this.planeGeometry, planeMaterial);
       this.plane.receiveShadow = true;  // 设置地面接受阴影
 
       // rotate and position the plane
@@ -129,8 +140,41 @@ export default {
 
       this.createHouse()
 
+      this.addGeometries()
+
       // render the scene
       this.renderScene()
+    },
+
+    removeCube() {
+      let allChildren = this.scene.children
+      let lastObject = allChildren[allChildren.length - 1]
+      if (lastObject instanceof THREE.Mesh) {
+        this.scene.remove(lastObject)
+        this.controls.numberOfObjects = this.scene.children.length
+      }
+    },
+
+    addCube() {
+      let cubeSize = Math.ceil(Math.random() * 3)
+      let cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
+      let cubeMaterial = new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff})
+      let cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+      cube.castShadow = true
+      cube.name = "cube-" + this.scene.children.length
+
+      // position the cube randomly in the scene
+      cube.position.x = -30 + Math.round((Math.random() * this.planeGeometry.parameters.width));
+      cube.position.y = Math.round((Math.random() * 5));
+      cube.position.z = -20 + Math.round((Math.random() * this.planeGeometry.parameters.height));
+
+      // add the cube to the scene
+      this.scene.add(cube);
+      this.numberOfObjects = this.scene.children.length;
+    },
+
+    outputObjects() {
+      console.log(this.scene.children)
     },
 
     onResize() {
@@ -143,6 +187,10 @@ export default {
       let gui = new Dat.GUI();
       gui.add(this.controls, 'rotationSpeed', 0, 0.5);
       gui.add(this.controls, 'bouncingSpeed', 0, 0.5);
+      gui.add(this, 'addCube');
+      gui.add(this, 'removeCube');
+      gui.add(this, 'outputObjects');
+      gui.add(this.controls, 'numberOfObjects').listen();
     },
 
     renderScene() {
@@ -237,6 +285,79 @@ export default {
       this.trackballControls.keys = [65, 83, 68];
 
       this.clock = new THREE.Clock()
+    },
+
+    addGeometries() {
+      let geoms = []
+      geoms.push(new THREE.CylinderGeometry(1, 4, 4))
+      geoms.push(new THREE.BoxGeometry(2, 2, 2))
+      geoms.push(new THREE.SphereGeometry(2))
+      geoms.push(new THREE.IcosahedronGeometry(4))
+
+      let points = [
+        new THREE.Vector3(2, 2, 2),
+        new THREE.Vector3(2, 2, -2),
+        new THREE.Vector3(-2, 2, -2),
+        new THREE.Vector3(-2, 2, 2),
+        new THREE.Vector3(2, -2, 2),
+        new THREE.Vector3(2, -2, -2),
+        new THREE.Vector3(-2, -2, -2),
+        new THREE.Vector3(-2, -2, 2),
+      ]
+      geoms.push(new ConvexGeometry(points))
+
+      // create a lathgeometry
+      let pts = []
+      let detail = .1
+      let radius = 3
+      for (let angle = 0.0; angle < Math.PI; angle += detail) {
+        pts.push(new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius))
+      }
+      geoms.push(new THREE.LatheGeometry(pts, 12))
+
+      geoms.push(new THREE.OctahedronGeometry(3))
+
+      geoms.push(new ParametricGeometry(ParametricGeometries.mobius3d, 20, 10));
+
+      geoms.push(new THREE.TetrahedronGeometry(3));
+
+      geoms.push(new THREE.TorusGeometry(3, 1, 10, 10));
+
+      geoms.push(new THREE.TorusKnotGeometry(3, 0.5, 50, 20));
+
+      let j = 0;
+      for (let i = 0; i < geoms.length; i++) {
+        // let cubeMaterial = new THREE.MeshLambertMaterial({
+        //   wireframe: true,
+        //   color: Math.random() * 0xffffff
+        // });
+
+        let materials = [
+          new THREE.MeshLambertMaterial({
+            color: Math.random() * 0xffffff
+          }),
+          new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            wireframe: true
+          })
+        ];
+
+        let mesh = createMultiMaterialObject(geoms[i], materials);
+        mesh.traverse(function (e) {
+          e.castShadow = true
+        });
+
+        //var mesh = new THREE.Mesh(geoms[i],materials[i]);
+        //mesh.castShadow=true;
+        mesh.position.x = -24 + ((i % 4) * 12);
+        mesh.position.y = 4;
+        mesh.position.z = -8 + (j * 12);
+
+        if ((i + 1) % 4 === 0) {
+          j++;
+        }
+        this.scene.add(mesh);
+      }
     }
   }
 }
