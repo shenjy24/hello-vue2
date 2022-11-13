@@ -20,7 +20,6 @@
     "three-obj-mtl-loader": "^1.0.3",
     "three-orbit-controls": "^82.1.0",
     "three-trackballcontrols": "^0.9.0",
-    "threebsp": "^1.0.4",
     "tween": "^0.9.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.3",
