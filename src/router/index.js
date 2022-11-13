@@ -14,6 +14,7 @@ import WebSite from "@/components/slot/WebSite";
 import CreateScene from "@/components/threejs/CreateScene";
 import HelloTween from "@/components/threejs/HelloTween";
 import SolidGeometry from "@/components/threejs/SolidGeometry";
+import FormValidation from "@/components/elementui/FormValidation";
 
 export default new Router({
     mode: 'history',
@@ -87,6 +88,11 @@ export default new Router({
             path: '/bsp',
             name: 'SolidGeometry',
             component: SolidGeometry
+        },
+        {
+            path: '/form',
+            name: 'FormValidation',
+            component: FormValidation
         }
     ]
 })
