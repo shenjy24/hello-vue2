@@ -12,6 +12,8 @@ import VuexCounter from "@/components/VuexCounter";
 import WebSite from "@/components/slot/WebSite";
 // import HelloThreeJS from "@/components/threejs/HelloThreeJS";
 import CreateScene from "@/components/threejs/CreateScene";
+import HelloTween from "@/components/threejs/HelloTween";
+import SolidGeometry from "@/components/threejs/SolidGeometry";
 
 export default new Router({
     mode: 'history',
@@ -75,6 +77,16 @@ export default new Router({
             path: '/three',
             name: 'HelloThreeJS',
             component: CreateScene
+        },
+        {
+            path: '/tween',
+            name: 'HelloTween',
+            component: HelloTween
+        },
+        {
+            path: '/bsp',
+            name: 'SolidGeometry',
+            component: SolidGeometry
         }
     ]
 })
