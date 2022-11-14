@@ -10,8 +10,8 @@ import Video from "@/components/media/Video";
 import Audio from "@/components/media/Audio";
 import VuexCounter from "@/components/VuexCounter";
 import WebSite from "@/components/slot/WebSite";
-// import HelloThreeJS from "@/components/threejs/HelloThreeJS";
 import CreateScene from "@/components/threejs/CreateScene";
+import HelloTween from "@/components/threejs/HelloTween";
 import FormValidation from "@/components/elementui/FormValidation";
 
 export default new Router({
@@ -76,6 +76,11 @@ export default new Router({
             path: '/three',
             name: 'HelloThreeJS',
             component: CreateScene
+        },
+        {
+            path: '/tween',
+            name: 'HelloTween',
+            component: HelloTween
         },
         {
             path: '/form',

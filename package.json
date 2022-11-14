@@ -20,6 +20,7 @@
     "three-obj-mtl-loader": "^1.0.3",
     "three-orbit-controls": "^82.1.0",
     "three-trackballcontrols": "^0.9.0",
+    "tween": "^0.9.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.3",
     "vuex": "^3.6.2"
@@ -32,6 +33,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "imports-loader": "^4.0.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.0",
     "vue-template-compiler": "^2.6.14"
@@ -49,7 +51,11 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/multi-word-component-names": "off"
+      "vue/multi-word-component-names": "off",
+      "no-global-assign": "off",
+      "no-unused-vars": "off",
+      "vue/no-unused-vars": "off",
+      "no-constant-condition": "off"
     }
   },
   "browserslist": [
