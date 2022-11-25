@@ -31,7 +31,7 @@ export default {
       type: 'mp4',
       isLive: false,
       hasAudio: true,
-      url: require('../../assets/media/video/mov_bbb.mp4')
+      url: require('../../../assets/media/video/mov_bbb.mp4')
     })
     let videoElement = this.$refs.video
     videoElement.muted = false
