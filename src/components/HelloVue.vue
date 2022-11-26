@@ -1,12 +1,12 @@
 <template>
   <div>
-    <img src="logo.png"/>
+    <img src="image/logo.png"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Image"
+  name: "HelloVue"
 }
 </script>
 

@@ -13,7 +13,7 @@ import WebSite from "@/components/feature/slot/WebSite";
 import CreateScene from "@/components/module/threejs/CreateScene";
 import HelloTween from "@/components/module/threejs/HelloTween";
 import FormValidation from "@/components/module/elementui/FormValidation";
-import Image from "@/components/module/css/Image";
+import HelloVue from "@/components/HelloVue";
 
 export default new Router({
     mode: 'history',
@@ -89,9 +89,9 @@ export default new Router({
             component: FormValidation
         },
         {
-            path: '/image',
-            name: 'Image',
-            component: Image
+            path: '/hello',
+            name: 'HelloVue',
+            component: HelloVue
         }
     ]
 })
