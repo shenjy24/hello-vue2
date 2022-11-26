@@ -1,6 +1,7 @@
 <template>
   <div style="position: relative">
-    <el-button @click="openDialog">对话框</el-button>
+    <el-button @click="openDialog">创建</el-button>
+    <el-button @click="editDialog">编辑</el-button>
     <el-dialog title="创建标签" :visible.sync="show" width="480px">
       <el-form ref="tagForm" :model="inputForm" :rules="rules">
         <el-form-item label="标签名称" prop="inputTag">
@@ -51,7 +52,13 @@ export default {
     openDialog() {
       this.show = true
     },
+    editDialog() {
+      this.show = true
+      this.inputForm.inputTag = '标签1'
+      this.inputForm.inputTheme = 'comic'
+    },
     closeDialog() {
+      console.log(this.inputForm)
       this.show = false
       this.$refs.tagForm.resetFields()
       console.log(this.inputForm)
