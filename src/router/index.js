@@ -1,18 +1,19 @@
 import Router from 'vue-router';
-import Logan from "@/components/Logan";
-import IndexedDB from "@/components/IndexedDB";
-import CountDown from "@/components/CountDown";
-import DragAndDrop from "@/components/DragAndDrop";
-import ScssStyle from "@/components/css/ScssStyle";
-import Transition from "@/components/css/Transition";
-import Animation from "@/components/css/Animation";
-import Video from "@/components/media/Video";
-import Audio from "@/components/media/Audio";
-import VuexCounter from "@/components/VuexCounter";
-import WebSite from "@/components/slot/WebSite";
-import CreateScene from "@/components/threejs/CreateScene";
-import HelloTween from "@/components/threejs/HelloTween";
-import FormValidation from "@/components/elementui/FormValidation";
+import Logan from "@/components/module/log/Logan";
+import IndexedDB from "@/components/module/storage/IndexedDB";
+import CountDown from "@/components/module/util/CountDown";
+import DragAndDrop from "@/components/module/util/DragAndDrop";
+import ScssStyle from "@/components/module/css/ScssStyle";
+import Transition from "@/components/module/css/Transition";
+import Animation from "@/components/module/css/Animation";
+import Video from "@/components/module/media/Video";
+import Audio from "@/components/module/media/Audio";
+import VuexCounter from "@/components/feature/vuex/VuexCounter";
+import WebSite from "@/components/feature/slot/WebSite";
+import CreateScene from "@/components/module/threejs/CreateScene";
+import HelloTween from "@/components/module/threejs/HelloTween";
+import FormValidation from "@/components/module/elementui/FormValidation";
+import Image from "@/components/module/css/Image";
 
 export default new Router({
     mode: 'history',
@@ -86,6 +87,11 @@ export default new Router({
             path: '/form',
             name: 'FormValidation',
             component: FormValidation
+        },
+        {
+            path: '/image',
+            name: 'Image',
+            component: Image
         }
     ]
 })
