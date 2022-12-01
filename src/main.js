@@ -11,6 +11,8 @@ import Qs from 'qs';
 
 Vue.config.productionTip = false
 
+Vue.prototype.BASE_API = 'http://localhost:18080/'
+
 // 注册ElementUI
 Vue.use(ElementUI);
 // 注册路由
