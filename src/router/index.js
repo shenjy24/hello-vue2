@@ -2,7 +2,6 @@ import Router from 'vue-router';
 import Logan from "@/components/module/log/Logan";
 import IndexedDB from "@/components/module/storage/IndexedDB";
 import CountDown from "@/components/module/util/CountDown";
-import DragAndDrop from "@/components/module/util/DragAndDrop";
 import ScssStyle from "@/components/module/css/ScssStyle";
 import Transition from "@/components/module/css/Transition";
 import Animation from "@/components/module/css/Animation";
@@ -32,11 +31,6 @@ export default new Router({
             path: '/countdown',
             name: 'countdown',
             component: CountDown
-        },
-        {
-            path: '/drag',
-            name: 'drag',
-            component: DragAndDrop
         },
         {
             path: '/scss',
